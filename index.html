@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BeautyFinder - Finde Dein Make-up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        :root {
+            --primary-pink: #ffb6c1;
+            --secondary-lavender: #e6e6fa;
+            --accent-mint: #b5ead7;
+            --light-pink: #ffe4e1;
+            --text-dark: #4a4a4a;
+            --text-light: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+            --primary: #ff7eb9;
+            --secondary: #ffafcc;
+            --accent: #d9a5b3;
+            --light: #ffd7e5;
+            --dark: #a65c85;
+            --text: #5a3a4c;
+            --success: #a8e6cf;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(166, 92, 133, 0.15);
+            --radius: 24px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light-pink), var(--accent-mint));
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffb6c1' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        
+        .logo i {
+            background: var(--primary-pink);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: var(--shadow);
+        }
+        
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 5px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        /* Main Content Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2 i {
+            color: var(--primary-pink);
+        }
+        
+        /* Upload Section */
+        .upload-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-pink), var(--accent-mint));
+            z-index: -1;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-lavender));
+            color: var(--text-light);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-dark);
+            border: 1px solid var(--primary-pink);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn i {
+            font-size: 20px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        /* Camera Preview */
+        #camera-preview {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        #video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        #video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+        
+        #camera-controls {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #capture-btn {
+            flex: 1;
+            background: linear-gradient(45deg, var(--accent-mint), var(--secondary-lavender));
+            color: var(--text-light);
+        }
+        
+        /* Preview Section */
+        #preview-section {
+            display: none;
+            text-align: center;
+        }
+        
+        #preview-image {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        
+        #analyze-btn {
+            margin: 0 auto;
+            width: 200px;
+        }
+        
+        /* Results Section */
+        .results-container {
+            display: none;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .results-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 1px solid var(--primary-pink);
+            border-radius: 12px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn.active {
+            background: var(--primary-pink);
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: linear-gradient(45deg, var(--light-pink), var(--secondary-lavender));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-pink);
+            font-size: 40px;
+        }
+        
+        .product-info {
+            padding: 12px;
+        }
+        
+        .product-name {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-brand {
+            font-size: 11px;
+            color: var(--primary-pink);
+            margin-bottom: 5px;
+        }
+        
+        .product-price {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        
+        .sale-price {
+            color: #e74c3c;
+        }
+        
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .action-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--light-pink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-dark);
+        }
+        
+        .action-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+        
+        .favorite-btn.active i {
+            color: #e74c3c;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--light-pink);
+            border-top: 4px solid var(--primary-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+        
+        /* Favorites Section */
+        .favorites-container {
+            display: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-dark);
+            opacity: 0.6;
+        }
+        
+        .empty-state i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: var(--primary-pink);
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-radius: 20px;
+            padding: 8px;
+            box-shadow: var(--shadow);
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 100;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 10px 5px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-item.active {
+            background: var(--primary-pink);
+            color: white;
+        }
+        
+        .nav-item i {
+            font-size: 18px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px 80px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation for product cards */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .product-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* How it works */
+        .section-title {
+            font-size: 20px;
+            margin: 30px 0 20px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .steps {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 5px 20px;
+            scrollbar-width: none;
+        }
+
+        .steps::-webkit-scrollbar {
+            display: none;
+        }
+
+        .step {
+            min-width: 240px;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 25px 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 36px;
+            height: 36px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 700;
+        }
+
+        .step-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                BeautyFinder
+            </div>
+            <div class="tagline">Finde deine Beauty-Produkte mit einem Bild</div>
+        </header>
+        
+        <main>
+            <!-- Upload Section -->
+            <div class="card" id="upload-section">
+                <h2><i class="fas fa-camera"></i> Produkt scannen</h2>
+                <div class="upload-options">
+                    <button class="btn btn-primary" id="camera-btn">
+                        <i class="fas fa-camera"></i> Kamera verwenden
+                    </button>
+                    <button class="btn btn-secondary" id="upload-btn">
+                        <i class="fas fa-image"></i> Bild hochladen
+                    </button>
+                    <input type="file" id="file-input" class="file-input" accept="image/*">
+                </div>
+            </div>
+            
+            <!-- Camera Preview -->
+            <div class="card" id="camera-preview">
+                <h2><i class="fas fa-video"></i> Kamera</h2>
+                <div id="video-container">
+                    <video id="video" autoplay playsinline></video>
+                </div>
+                <div id="camera-controls">
+                    <button class="btn btn-secondary" id="cancel-camera-btn">
+                        <i class="fas fa-times"></i> Abbrechen
+                    </button>
+                    <button class="btn btn-primary" id="capture-btn">
+                        <i class="fas fa-camera"></i> Aufnehmen
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Image Preview -->
+            <div class="card" id="preview-section">
+                <h2><i class="fas fa-search"></i> Bildvorschau</h2>
+                <img id="preview-image" src="" alt="Vorschau des hochgeladenen Bildes">
+                <button class="btn btn-primary" id="analyze-btn">
+                    <i class="fas fa-magic"></i> Produkte finden
+                </button>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div class="card loading" id="loading-section">
+                <div class="loader"></div>
+                <div class="loading-text">Analysiere dein Bild...</div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="card results-container" id="results-section">
+                <div class="results-header">
+                    <div class="results-title">Gefundene Produkte</div>
+                    <div class="filter-options">
+                        <div class="filter-btn active">Alle</div>
+                        <div class="filter-btn">Günstig</div>
+                        <div class="filter-btn">Premium</div>
+                    </div>
+                </div>
+                <div class="product-grid" id="product-grid">
+                    <!-- Products will be inserted here dynamically -->
+                </div>
+            </div>
+            
+            <!-- Favorites Section -->
+            <div class="card favorites-container" id="favorites-section">
+                <h2><i class="fas fa-heart"></i> Deine Favoriten</h2>
+                <div id="favorites-grid" class="product-grid">
+                    <!-- Favorites will be inserted here dynamically -->
+                </div>
+                <div class="empty-state" id="empty-favorites">
+                    <i class="fas fa-heart-broken"></i>
+                    <h3>Noch keine Favoriten</h3>
+                    <p>Speichere deine Lieblingsprodukte mit dem Herz-Symbol</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- How it works -->
+        <h2 class="section-title"><i class="fas fa-lightbulb"></i> So funktioniert's</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Foto hochladen</div>
+                <div class="step-desc">Mache ein Foto von deinem Beauty-Produkt oder lade ein vorhandenes Bild hoch</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Produkt erkennen</div>
+                <div class="step-desc">Unsere KI analysiert das Bild und erkennt das Produkt</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Alternativen finden</div>
+                <div class="step-desc">Wir zeigen dir günstigere Alternativen mit ähnlicher Qualität</div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <div class="nav-item active" data-tab="upload-section">
+                <i class="fas fa-home"></i>
+                <span>Start</span>
+            </div>
+            <div class="nav-item" data-tab="results-section">
+                <i class="fas fa-search"></i>
+                <span>Suchen</span>
+            </div>
+            <div class="nav-item" data-tab="favorites-section">
+                <i class="fas fa-heart"></i>
+                <span>Favoriten</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const cameraBtn = document.getElementById('camera-btn');
+        const uploadBtn = document.getElementById('upload-btn');
+        const fileInput = document.getElementById('file-input');
+        const cameraPreview = document.getElementById('camera-preview');
+        const video = document.getElementById('video');
+        const cancelCameraBtn = document.getElementById('cancel-camera-btn');
+        const captureBtn = document.getElementById('capture-btn');
+        const previewSection = document.getElementById('preview-section');
+        const previewImage = document.getElementById('preview-image');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const loadingSection = document.getElementById('loading-section');
+        const resultsSection = document.getElementById('results-section');
+        const productGrid = document.getElementById('product-grid');
+        const favoritesSection = document.getElementById('favorites-section');
+        const favoritesGrid = document.getElementById('favorites-grid');
+        const emptyFavorites = document.getElementById('empty-favorites');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        // State variables
+        let stream = null;
+        let favorites = JSON.parse(localStorage.getItem('beautyFinderFavorites')) || [];
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('upload-section');
+            updateFavoritesDisplay();
+        });
+        
+        // Event Listeners
+        cameraBtn.addEventListener('click', startCamera);
+        uploadBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFileUpload);
+        cancelCameraBtn.addEventListener('click', cancelCamera);
+        captureBtn.addEventListener('click', captureImage);
+        analyzeBtn.addEventListener('click', analyzeImage);
+        navItems.forEach(item => item.addEventListener('click', handleNavClick));
+        
+        // Functions
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+        
+        function handleNavClick() {
+            const tab = this.getAttribute('data-tab');
+            
+            // Update active nav item
+            navItems.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show corresponding section
+            showSection(tab);
+        }
+        
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'environment' },
+                    audio: false 
+                });
+                video.srcObject = stream;
+                cameraPreview.style.display = 'block';
+                showSection('camera-preview');
+            } catch (err) {
+                alert('Kamera-Zugriff fehlgeschlagen: ' + err.message);
+            }
+        }
+        
+        function cancelCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            showSection('upload-section');
+        }
+        
+        function captureImage() {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Stop camera stream
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+            
+            // Display preview
+            previewImage.src = canvas.toDataURL('image/jpeg');
+            previewSection.style.display = 'block';
+            showSection('preview-section');
+        }
+        
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    previewImage.src = event.target.result;
+                    previewSection.style.display = 'block';
+                    showSection('preview-section');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function analyzeImage() {
+            // Show loading state
+            loadingSection.style.display = 'flex';
+            showSection('loading-section');
+            
+            // Simulate image analysis
+            setTimeout(() => {
+                displayResults();
+                showSection('results-section');
+                
+                // Set active nav to results
+                navItems.forEach(item => item.classList.remove('active'));
+                document.querySelector('[data-tab="results-section"]').classList.add('active');
+            }, 2000);
+        }
+        
+        function displayResults() {
+            productGrid.innerHTML = '';
+            
+            // Sample product data
+            const products = [
+                {
+                    id: 1,
+                    name: 'Matte Lippenstift - Rosé Nuance',
+                    brand: 'LUXE Beauty',
+                    originalPrice: 24.99,
+                    salePrice: 19.99,
+                    image: 'lipstick',
+                    affiliateLink: '#',
+                    isFavorite: favorites.includes(1)
+                },
+                {
+                    id: 2,
+                    name: 'Mascara Volume Extend',
+                    brand: 'Dazzle Eyes',
+                    originalPrice: 18.50,
+                    salePrice: 15.75,
+                    image: 'mascara',
+                    affiliateLink: '#',
+                    isFavorite: favorites.includes(2)
+                },
+                {
+                    id: 3,
+                    name: 'Nagellack - Soft Peach',
+                    brand: 'Color Crush',
+                    originalPrice: 9.99,
+                    salePrice: 7.49,
+                    image: 'nail-polish',
+                    affiliateLink: '#',
+                    isFavorite: favorites.includes(3)
+                },
+                {
+                    id: 4,
+                    name: 'Highlighter Palette',
+                    brand: 'Glow Queen',
+                    originalPrice: 32.00,
+                    salePrice: 27.99,
+                    image: 'highlighter',
+                    affiliateLink: '#',
+                    isFavorite: favorites.includes(4)
+                }
+            ];
+            
+            // Add products to grid
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                productGrid.appendChild(productCard);
+            });
+        }
+        
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image">
+                    <i class="fas fa-${product.image}"></i>
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">${product.brand}</div>
+                    <div class="product-name">${product.name}</div>
+                    <div class="product-price">
+                        <span class="original-price">€${product.originalPrice.toFixed(2)}</span>
+                        <span class="sale-price">€${product.salePrice.toFixed(2)}</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="${product.affiliateLink}" target="_blank" class="action-btn">
+                            <i class="fas fa-shopping-bag"></i>
+                        </a>
+                        <div class="action-btn favorite-btn ${product.isFavorite ? 'active' : ''}" data-id="${product.id}">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add favorite event listener
+            const favBtn = card.querySelector('.favorite-btn');
+            favBtn.addEventListener('click', toggleFavorite);
+            
+            return card;
+        }
+        
+        function toggleFavorite() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            const index = favorites.indexOf(productId);
+            
+            if (index > -1) {
+                // Remove from favorites
+                favorites.splice(index, 1);
+                this.classList.remove('active');
+            } else {
+                // Add to favorites
+                favorites.push(productId);
+                this.classList.add('active');
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('beautyFinderFavorites', JSON.stringify(favorites));
+            
+            // Update favorites display
+            updateFavoritesDisplay();
+        }
+        
+        function updateFavoritesDisplay() {
+            favoritesGrid.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                emptyFavorites.style.display = 'block';
+                return;
+            }
+            
+            emptyFavorites.style.display = 'none';
+            
+            // Sample favorite products data
+            const favoriteProducts = [
+                {
+                    id: 5,
+                    name: 'Luxus Make-up Pinselset',
+                    brand: 'Artistry Tools',
+                    originalPrice: 45.99,
+                    salePrice: 39.99,
+                    image: 'brush',
+                    affiliateLink: '#'
+                },
+                {
+                    id: 6,
+                    name: 'Anti-Aging Tagescreme',
+                    brand: 'Skin Renew',
+                    originalPrice: 29.95,
+                    salePrice: 24.95,
+                    image: 'cream',
+                    affiliateLink: '#'
+                }
+            ];
+            
+            // Add favorite products to grid
+            favoriteProducts.forEach(product => {
+                const productCard = createProductCard({
+                    ...product,
+                    isFavorite: favorites.includes(product.id)
+                });
+                favoritesGrid.appendChild(productCard);
+            });
+        }
+        
+        // Filter buttons functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // In a real implementation, this would filter products
+            });
+        });
+    </script>
+</body>
+</html>
