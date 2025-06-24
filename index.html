@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BeautyFinder - Finde Dein Make-up</title>
+    <title>BeautyFinder - Find yo Make up</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
@@ -573,19 +573,19 @@
                 <i class="fas fa-heart"></i>
                 BeautyFinder
             </div>
-            <div class="tagline">Finde deine Beauty-Produkte mit einem Bild</div>
+            <div class="tagline">Find your Beauty product from a picture</div>
         </header>
         
         <main>
             <!-- Upload Section -->
             <div class="card" id="upload-section">
-                <h2><i class="fas fa-camera"></i> Produkt scannen</h2>
+                <h2><i class="fas fa-camera"></i> scan Product</h2>
                 <div class="upload-options">
                     <button class="btn btn-primary" id="camera-btn">
-                        <i class="fas fa-camera"></i> Kamera verwenden
+                        <i class="fas fa-camera"></i> Use Cam
                     </button>
                     <button class="btn btn-secondary" id="upload-btn">
-                        <i class="fas fa-image"></i> Bild hochladen
+                        <i class="fas fa-image"></i> Upload a Pic
                     </button>
                     <input type="file" id="file-input" class="file-input" accept="image/*">
                 </div>
@@ -593,42 +593,42 @@
             
             <!-- Camera Preview -->
             <div class="card" id="camera-preview">
-                <h2><i class="fas fa-video"></i> Kamera</h2>
+                <h2><i class="fas fa-video"></i> Cam</h2>
                 <div id="video-container">
                     <video id="video" autoplay playsinline></video>
                 </div>
                 <div id="camera-controls">
                     <button class="btn btn-secondary" id="cancel-camera-btn">
-                        <i class="fas fa-times"></i> Abbrechen
+                        <i class="fas fa-times"></i> cancel
                     </button>
                     <button class="btn btn-primary" id="capture-btn">
-                        <i class="fas fa-camera"></i> Aufnehmen
+                        <i class="fas fa-camera"></i> take a pic
                     </button>
                 </div>
             </div>
             
             <!-- Image Preview -->
             <div class="card" id="preview-section">
-                <h2><i class="fas fa-search"></i> Bildvorschau</h2>
+                <h2><i class="fas fa-search"></i> Preview</h2>
                 <img id="preview-image" src="" alt="Vorschau des hochgeladenen Bildes">
                 <button class="btn btn-primary" id="analyze-btn">
-                    <i class="fas fa-magic"></i> Produkte finden
+                    <i class="fas fa-magic"></i> find Products
                 </button>
             </div>
             
             <!-- Loading Indicator -->
             <div class="card loading" id="loading-section">
                 <div class="loader"></div>
-                <div class="loading-text">Analysiere dein Bild...</div>
+                <div class="loading-text">Analyze the Picture...</div>
             </div>
             
             <!-- Results Section -->
             <div class="card results-container" id="results-section">
                 <div class="results-header">
-                    <div class="results-title">Gefundene Produkte</div>
+                    <div class="results-title">Found Products</div>
                     <div class="filter-options">
-                        <div class="filter-btn active">Alle</div>
-                        <div class="filter-btn">Günstig</div>
+                        <div class="filter-btn active">All</div>
+                        <div class="filter-btn">Cheaper</div>
                         <div class="filter-btn">Premium</div>
                     </div>
                 </div>
@@ -639,35 +639,35 @@
             
             <!-- Favorites Section -->
             <div class="card favorites-container" id="favorites-section">
-                <h2><i class="fas fa-heart"></i> Deine Favoriten</h2>
+                <h2><i class="fas fa-heart"></i> your Favorites</h2>
                 <div id="favorites-grid" class="product-grid">
                     <!-- Favorites will be inserted here dynamically -->
                 </div>
                 <div class="empty-state" id="empty-favorites">
                     <i class="fas fa-heart-broken"></i>
-                    <h3>Noch keine Favoriten</h3>
-                    <p>Speichere deine Lieblingsprodukte mit dem Herz-Symbol</p>
+                    <h3>no favorites</h3>
+                    <p>Save your favorite Products by liking</p>
                 </div>
             </div>
         </main>
 
         <!-- How it works -->
-        <h2 class="section-title"><i class="fas fa-lightbulb"></i> So funktioniert's</h2>
+        <h2 class="section-title"><i class="fas fa-lightbulb"></i> How it works</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
-                <div class="step-title">Foto hochladen</div>
-                <div class="step-desc">Mache ein Foto von deinem Beauty-Produkt oder lade ein vorhandenes Bild hoch</div>
+                <div class="step-title">Upload a Picture</div>
+                <div class="step-desc">Take a picture of the Product or upload a Photo</div>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <div class="step-title">Produkt erkennen</div>
-                <div class="step-desc">Unsere KI analysiert das Bild und erkennt das Produkt</div>
+                <div class="step-title">recognize the Product</div>
+                <div class="step-desc">Our AI analyzes the Photo and finds the Product</div>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <div class="step-title">Alternativen finden</div>
-                <div class="step-desc">Wir zeigen dir günstigere Alternativen mit ähnlicher Qualität</div>
+                <div class="step-title">find alternatives/cheaper ones</div>
+                <div class="step-desc">we show you cheaper product alternatives with the similar quality</div>
             </div>
         </div>
         
@@ -679,11 +679,11 @@
             </div>
             <div class="nav-item" data-tab="results-section">
                 <i class="fas fa-search"></i>
-                <span>Suchen</span>
+                <span>search</span>
             </div>
             <div class="nav-item" data-tab="favorites-section">
                 <i class="fas fa-heart"></i>
-                <span>Favoriten</span>
+                <span>favorites</span>
             </div>
         </div>
     </div>
